@@ -17,9 +17,7 @@ import streamlit as st
 ######## Initialise Connection
 ##############################################
 
-# Set up parameters
-username = 'richard@acornmc.co.uk'
-password = 'Subban76'
+
 
 # Create connection using the username and password
 ds = DSWS.Datastream(username = username, password = password)
