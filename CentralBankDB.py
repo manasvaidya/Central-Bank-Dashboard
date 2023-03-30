@@ -396,7 +396,7 @@ result = df.style.pipe(make_pretty)
 
 
 
-st.write(result)
+st.dataframe(df.style.pipe(make_pretty))
 
 
 
