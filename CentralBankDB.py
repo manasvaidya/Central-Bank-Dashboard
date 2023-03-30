@@ -212,9 +212,88 @@ df_rate = ds.get_data(tickers = ticker_rate,
 
 
 
+## Extract Policy Rate data
+fields_inf = ['PCH#(CSR#(X, M), -12M)']
+
+df_inf = ds.get_data(tickers = ticker_inf, 
+                          start=start, 
+                          #end = end,
+                          freq='M', 
+                          fields = fields_inf,
+                          kind=1).sort_index(ascending=False)
 
 
-st.dataframe(df_rate)
+
+
+## Loop to fill up Policy Rate numbers for all countries
+#For every column in df_rate
+for c in df_rate:
+    # Assign latest policy rate to corresponding countries
+    df.loc[df['rate_code']==c[0],'policy_rate'] = df_rate[c].sort_index(ascending=False).dropna().iloc[0]
+           
+    # Assign month of latest policy rate to corresponding countries
+    df.loc[df['rate_code']==c[0],'policy_rate_date'] = df_rate[c].sort_index(ascending=False).dropna().index[0]
+    
+    
+    ## Loop to check latest policy rate decision
+    # Initialise position of pointer
+    i = 0
+    
+    # Initialise threshold counter
+    x = 0
+    
+    # Loop while we are within the threshold
+    while (i<len(df_rate[c].sort_index(ascending=False).dropna())-1)&(x==0):
+        # If i'th value != t+1'th value
+        if df_rate[c].sort_index(ascending=False).dropna().iloc[i] != df_rate[c].sort_index(ascending=False).dropna().iloc[i+1]:
+            # Then we know that interest rate was changed in i'th period. Take that date.
+            df.loc[df['rate_code']==c[0], 'date_of_last_move'] = dt.strptime(df_rate[c].sort_index(ascending=False).dropna().index[i], "%Y-%m-%d").strftime("%b-%Y")
+            
+            # Check if the change was a hike or not
+            if df_rate[c].sort_index(ascending=False).dropna().iloc[i] > df_rate[c].sort_index(ascending=False).dropna().iloc[i+1]:
+                df.loc[df['rate_code']==c[0], 'direction_of_last_move'] = 'HIKE'
+            else:
+                df.loc[df['rate_code']==c[0], 'direction_of_last_move'] = 'CUT'
+                
+            #Calculate % pt change
+            df.loc[df['rate_code']==c[0], 'policy_rate_change_pp'] = (df_rate[c].sort_index(ascending=False).dropna().iloc[i] - df_rate[c].sort_index(ascending=False).dropna().iloc[i+1]).round(2)
+            
+            # Also, mark the threshold counter as we now have our required value
+            x = 1
+        # If the i'th interest rate = i+1'th interest rate,
+        else:
+            # And if we're at the end of our series
+            if i == len(df_rate[c].sort_index(ascending=False).dropna())-2:
+                # Then we know that the interest rate wasn't changed for over 2 years
+                df.loc[df['rate_code']==c[0], 'date_of_last_move'] = np.nan
+                df.loc[df['rate_code']==c[0], 'direction_of_last_move'] = 'NA for'+start
+                # And we end the loop
+                x = 1
+                df.loc[df['rate_code']==c[0], 'policy_rate_change_pp'] = np.nan
+            # Otherwise,
+            else:
+                # We only increment the value of i to check the next value
+                i = i + 1
+ 
+
+
+
+
+## Loop to assign Inflation numbers against every country
+for c in df_inf:
+    # Assign latest policy rate to corresponding countries
+    df.loc[df['inflation_code']==c[0],'inflation'] = df_inf[c].sort_index(ascending=False).dropna().iloc[0].round(2)
+
+    # Assign month of latest policy rate to corresponding countries
+    df.loc[df['inflation_code']==c[0],'inflation_date'] = df_inf[c].sort_index(ascending=False).dropna().index[0]
+             
+
+
+    
+    
+
+
+st.dataframe(df_inf)
 
 
 
