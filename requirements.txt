@@ -1,6 +1,3 @@
-dataframe-image==0.1.5
-DatastreamDSWS==1.0.10
-DateTime==5.0
+DatastreamDSWS
 eikon==1.1.16
-pandas==1.5.3
 streamlit
