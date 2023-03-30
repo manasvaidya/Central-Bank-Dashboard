@@ -303,9 +303,101 @@ df = df[col_order]
 df.columns = df.columns.map(dict_col)
 
     
+######################################################################################
+################### Format Output
+######################################################################################
+
+def make_pretty(styler, **kwargs):
+    styler.format(precision=2)
+    
+    
+    styler.hide(axis=0)
+    
+    styler.set_caption("Global Central Bank Dashboard [Source: Refinitiv DataStream, Acorn MC Ltd]").set_table_styles([{
+        'selector': 'caption',
+        'props': [('color', 'Black'),
+                  ('font-size', '16px'),
+                  ('caption-side', 'top')
+                 ]
+    }])
+    
+    # Create border for entire table
+    styler.set_table_styles([{'selector' : '',
+                            'props' : [('border','0.5px solid black')]}], overwrite=False)
+    
+
+    row_hover = {# for row hover use <tr>, for cell hover use <td>
+        'selector': 'tr:hover',
+        'props': [('background-color', '#ffffb3')]
+    }
+    
+    cells = {# Cells background and font color
+        'selector': 'tr:not(.index_name)',
+        'props': 'background-color: white; color: black;'
+    }
+
+    headers = {#Headers background and font color
+        'selector': 'th:not(.index_name)',
+        'props': 'background-color: #000066; color: white;'
+    }
+    styler.set_table_styles([row_hover, cells, headers])
+    
+    # Align text in columns
+    styler.set_table_styles([ 
+        {'selector': 'th.col_heading', 'props': 'text-align: left;'},
+        {'selector': 'th.col_heading.level0', 'props': 'font-size: 1.1em;'},
+        {'selector': 'td', 'props': 'text-align: left;'}
+    ], overwrite=False)
+    
+    # Set border color between columns
+    styler.set_table_styles([
+        {'selector': 'td', 'props': 'border-left: 0.5px solid black'},
+        {'selector': 'td', 'props': 'border-right: 0.5px solid black'}
+        # {'selector': 'td', 'props': 'border-left: 1px solid #000066'},
+        # {'selector': 'td', 'props': 'border-right: 1px solid #000066'}
+    ]
+    , overwrite=False, axis=0)
+    
+    # Set border color between headers
+    styler.set_table_styles({("Country"): [
+        {'selector': 'th', 'props': 'border-left: 0.5px solid black'},
+        #{'selector': 'th', 'props': 'border-right: 1px solid white'}
+    ]}
+    , overwrite=False, axis=0)
+    
+
+#     styler.set_table_styles({("Date of Last Move"): [
+#         {'selector': 'th', 'props': 'border-left: 1px solid white'},
+#         {'selector': 'th', 'props': 'border-right: 1px solid white'}
+#     ]}
+#     , overwrite=False, axis=0)
+    
+#     styler.set_table_styles({("Change (%)"): [
+#         {'selector': 'th', 'props': 'border-left: 1px solid white'},
+#         {'selector': 'th', 'props': 'border-right: 1px solid white'}
+#     ]}
+#     , overwrite=False, axis=0)
+    
+#     styler.set_table_styles({("Inflation (%)"): [
+#         {'selector': 'th', 'props': 'border-left: 1px solid white'},
+#         {'selector': 'th', 'props': 'border-right: 1px solid white'}
+#     ]}
+#     , overwrite=False, axis=0)
+    
+    styler.set_table_styles({("Real Rate (%)"): [
+        {'selector': 'th', 'props': 'border-right: 0.5px solid black'}
+    ]}
+    , overwrite=False, axis=0)
+    
+    return styler
 
 
-st.dataframe(df, width=1000, use_container_width=True)
+result = df.style.pipe(make_pretty)
+
+
+result
+
+st.dataframe(result, use_container_width=True)
 
 
 
