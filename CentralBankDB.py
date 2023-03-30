@@ -180,6 +180,22 @@ start='-10Y'
 ## Make Data frame out of the list
 df = pd.DataFrame(input_list, columns=["country"])
 
+## Map Central Bank's choice of Rate
+df['central_bank_rate']=df["country"].map(dict_rate)
+
+
+## Map Interest rate code
+df['rate_code']=df["country"].map(dict_rate_code)
+
+## Map Inflation rate code
+df['inflation_code']=df["country"].map(dict_inf_code)
+
+
+
+
+
+
+
 
 st.dataframe(df)
 
