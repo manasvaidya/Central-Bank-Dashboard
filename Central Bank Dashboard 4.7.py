@@ -5,6 +5,7 @@ import pandas as pd, numpy as np
 import DatastreamDSWS as DSWS
 from datetime import datetime as dt
 import dataframe_image as dfi
+import streamlit as st
 
 
 
@@ -409,4 +410,4 @@ def make_pretty(styler, **kwargs):
 
 
 
-df
+st.dataframe(df)
