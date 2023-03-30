@@ -3,3 +3,4 @@ eikon==1.1.16
 streamlit
 numpy
 pandas
+datetime
