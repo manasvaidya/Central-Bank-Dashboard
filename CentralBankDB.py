@@ -17,7 +17,13 @@ import streamlit as st
 
 
 # create a dataframe with a boolean column
-df = pd.DataFrame({"A": [True, False, True, False]})
+data = {'Name': ['John', 'Jane', 'Bob', 'Alice'],
+        'Age': [25, 30, 28, 22],
+        'Gender': ['M', 'F', 'M', 'F'],
+        'Salary': [50000, 70000, 60000, 55000]}
+
+# create dataframe from data
+df = pd.DataFrame(data)
 
 # show the dataframe with checkboxes
 st.dataframe(df)
