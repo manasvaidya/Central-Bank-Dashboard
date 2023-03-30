@@ -408,7 +408,7 @@ hide_table_row_index = """
 st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
 
-st.dataframe(result, use_container_width=True)
-
+#st.dataframe(result, use_container_width=True)
+st.table(df)
 
 
