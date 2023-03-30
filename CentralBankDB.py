@@ -395,7 +395,8 @@ def make_pretty(styler, **kwargs):
 result = df.style.pipe(make_pretty)
 
 
-
+st.title('Central Bank Dashboard')
+st.subheader('Source: Refinitiv Datastream, Acorn Macro Consulting')
 st.dataframe(df.style.pipe(make_pretty))
 
 
