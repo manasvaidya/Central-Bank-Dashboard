@@ -169,6 +169,6 @@ input_list = ["US", "UK", "Canada", "Euro Area", "Japan", "Switzerland", "Austra
               ,"Brazil"
              ]
 
-st.write(dict_col)
+st.write(input_list)
 
 
