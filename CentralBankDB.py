@@ -214,7 +214,7 @@ df_rate = ds.get_data(tickers = ticker_rate,
 
 
 
-st.dataframe(df)
+st.dataframe(df_rate)
 
 
 
