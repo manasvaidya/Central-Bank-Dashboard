@@ -395,7 +395,6 @@ def make_pretty(styler, **kwargs):
 result = df.style.pipe(make_pretty)
 
 
-result
 
 st.dataframe(result, use_container_width=True)
 
