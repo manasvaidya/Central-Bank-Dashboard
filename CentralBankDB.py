@@ -18,7 +18,7 @@ import streamlit as st
 
 # Initialise login credentials
 username=st.secrets.credentials.username
-password=st.secrets.credentials.password)
+password=st.secrets.credentials.password
 
 # Create connection using the username and password
 ds = DSWS.Datastream(username = username, password = password)
