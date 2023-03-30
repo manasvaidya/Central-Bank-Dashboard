@@ -169,6 +169,19 @@ input_list = ["US", "UK", "Canada", "Euro Area", "Japan", "Switzerland", "Austra
               ,"Brazil"
              ]
 
-st.write(input_list)
+
+
+
+## Define initial parameters
+start='-10Y'
+
+
+
+## Make Data frame out of the list
+df = pd.DataFrame(input_list, columns=["country"])
+
+
+st.dataframe(df)
+
 
 
