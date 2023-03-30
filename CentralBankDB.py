@@ -169,6 +169,6 @@ input_list = ["US", "UK", "Canada", "Euro Area", "Japan", "Switzerland", "Austra
               ,"Brazil"
              ]
 
-st.write(dict_rate_code)
+st.write(dict_col)
 
 
