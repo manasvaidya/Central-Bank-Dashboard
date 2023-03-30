@@ -14,6 +14,8 @@ import streamlit as st
 # username = st.text_input("Enter Datastream username:")
 # password = st.text_input("Enter Datastream password:", type="password")
 
+username = st.text_input("Enter a username")
+password = st.text_input("Enter a password", type="password")
 
 
 # create a dataframe with a boolean column
