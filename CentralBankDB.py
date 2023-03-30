@@ -290,7 +290,18 @@ for c in df_inf:
              
 
 
-    
+      
+# Calculate Real Rate
+df['real_rate'] = (df['policy_rate']-df['inflation']).round(2)
+
+# Assign column order
+col_order = ['country', 'central_bank_rate', 'date_of_last_move', 'direction_of_last_move',
+             'policy_rate_change_pp', 'policy_rate', 'inflation', 'real_rate']
+
+# Reorder columns
+df = df[col_order]
+df.columns = df.columns.map(dict_col)
+
     
 
 
