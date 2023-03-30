@@ -2,9 +2,15 @@
 ########## Package Imports
 ###########################################
 import pandas as pd, numpy as np
+
+!pip install DatastreamDSWS
 import DatastreamDSWS as DSWS
+
 from datetime import datetime as dt
+
+!pip install dataframe_image
 import dataframe_image as dfi
+
 import streamlit as st
 
 
