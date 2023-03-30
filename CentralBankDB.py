@@ -193,6 +193,23 @@ df['inflation_code']=df["country"].map(dict_inf_code)
 
 
 
+## Create ticker for policy rate
+ticker_rate = ','.join(df['rate_code'])
+
+
+## Create ticker for Inflation rate
+ticker_inf = ','.join(df['inflation_code'])
+
+
+
+
+## Extract Policy Rate data
+df_rate = ds.get_data(tickers = ticker_rate, 
+                          start=start, 
+                          #end = end,
+                          freq='M', 
+                          kind=1).sort_index(ascending=False)
+
 
 
 
