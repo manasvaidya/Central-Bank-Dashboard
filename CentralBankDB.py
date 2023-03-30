@@ -23,4 +23,4 @@ data = {'Name': ['John', 'Jane', 'Bob', 'Alice'],
 
 
 
-st.write(data)
+st.dataframe(data)
