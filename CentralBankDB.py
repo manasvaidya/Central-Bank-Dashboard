@@ -187,5 +187,5 @@ df['central_bank_rate']=df["country"].map(dict_rate)
 
 
 ########## Write Dataframe#######
-st.dataframe(df)
+st.dataframe(df, use_container_width=True)
 
