@@ -305,7 +305,7 @@ df.columns = df.columns.map(dict_col)
     
 
 
-st.dataframe(df, width=1000)
+st.dataframe(df, width=1000, use_container_width=True)
 
 
 
