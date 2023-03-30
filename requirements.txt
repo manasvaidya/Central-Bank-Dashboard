@@ -3,3 +3,4 @@ DatastreamDSWS==1.0.10
 DateTime==5.0
 eikon==1.1.16
 pandas==1.5.3
+streamlit
