@@ -392,17 +392,21 @@ def make_pretty(styler, **kwargs):
     return styler
 
 
-result = df.style.pipe(make_pretty)
+# result = df.style.pipe(make_pretty)
 
 
-result
+# result
 
 
 
-dfi.export(result, 
-           f'central_bank_db_{dt.today().date()}.png', 
-           fontsize=3, 
-           dpi=1000,  
-           table_conversion='chrome', 
-           chrome_path=None)
+# dfi.export(result, 
+#            f'central_bank_db_{dt.today().date()}.png', 
+#            fontsize=3, 
+#            dpi=1000,  
+#            table_conversion='chrome', 
+#            chrome_path=None)
 
+
+
+
+df
