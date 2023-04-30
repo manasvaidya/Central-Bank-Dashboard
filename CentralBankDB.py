@@ -410,16 +410,16 @@ st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
 
 
-# Define function to download the dataframe as a CSV file
-def download_csv(df):
-    csv = df.to_csv(index=False)
-    b64 = base64.b64encode(csv.encode()).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download CSV file</a>'
-    return href
+# # Define function to download the dataframe as a CSV file
+# def download_csv(df):
+#     csv = df.to_csv(index=False)
+#     b64 = base64.b64encode(csv.encode()).decode()
+#     href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download CSV file</a>'
+#     return href
 
-# Add the download button
-download_link = download_csv(df)
-st.markdown(download_link, unsafe_allow_html=True)
+# # Add the download button
+# download_link = download_csv(df)
+# st.markdown(download_link, unsafe_allow_html=True)
 
 
 
