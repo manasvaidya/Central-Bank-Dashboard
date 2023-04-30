@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import DatastreamDSWS as DSWS
 import streamlit as st
-import base64
+#import base64
 from datetime import datetime as dt
 
 
