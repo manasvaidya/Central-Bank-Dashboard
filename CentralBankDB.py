@@ -410,7 +410,5 @@ st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
 
 
-#st.table(result)
+st.table(result)
 
-
-st.dataframe(df)
